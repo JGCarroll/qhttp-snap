@@ -1,0 +1,32 @@
+name: qhttp
+base: core20
+version: 'Tiny-Tiger'
+summary: A tiny HTTP server for simple needs
+description: |
+  Just place your files in `$HOME/snap/qhttp/common` and run `qhttp` and you're ready to go!
+  Ideal for simple HTTP needs like basic file transfers or quick experiments, with snaps built in sandboxing by default!
+  
+  You can specify a port with: `qhttp -p 12345`, but remember you need to run with sudo for ports below 1025, and if you do, the files need to be in `/root/snap/qhttp/common` instead!
+  
+  This snap is small, coming in at just 4KB by itself when the base snaps are already preinstalled! The q stands for quantum, as 4KB is the smallest possible possible size for squashfs and hence snaps!
+grade: stable
+confinement: strict
+license: MIT
+architectures:
+  - build-on: all
+    run-on: all
+
+parts:
+  qhttp:
+    plugin: dump
+    source: src
+    source-type: local
+
+apps:
+  qhttp:
+    command: bin/main.sh
+    plugs:
+      - network
+      - network-bind
+      - desktop
+
