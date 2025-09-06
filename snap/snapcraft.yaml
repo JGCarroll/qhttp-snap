@@ -1,5 +1,5 @@
 name: qhttp
-base: core20
+base: core24
 version: 'Tiny-Tiger'
 summary: A tiny HTTP server for simple needs
 description: |
@@ -12,9 +12,10 @@ description: |
 grade: stable
 confinement: strict
 license: MIT
-architectures:
-  - build-on: all
-    run-on: all
+platforms:
+  all:
+    build-on: [amd64]
+    build-for: [all]
 
 parts:
   qhttp:
@@ -29,4 +30,3 @@ apps:
       - network
       - network-bind
       - desktop
-
